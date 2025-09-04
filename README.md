@@ -3,8 +3,7 @@ Capture ESG metrics by financial year with auto-calculated KPIs update in real t
 
 ## 📦 Technologies
 
-- `Next.js`
-- `Turbopack`
+- `Next.js + Turbopack`
 - `Typescript`
 - `Tailwind CSS`
 - `Prisma ORM`

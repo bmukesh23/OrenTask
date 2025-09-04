@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int       @id @default(autoincrement()) @map("id")
+  name         String    @map("name")
+  email        String    @unique @map("email")
+  passwordHash String    @map("password_hash")
+  createdAt    DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("users")
+}
+
+model YearEntry {
+  id                   Int       @id @default(autoincrement()) @map("id")
+  userId               Int       @map("user_id")
+  fiscalYear           Int       @map("fiscal_year")
+  totalElectricity     Decimal?  @map("total_electricity") @db.Decimal
+  renewableElectricity Decimal?  @map("renewable_electricity") @db.Decimal
+  totalFuel            Decimal?  @map("total_fuel") @db.Decimal
+  carbonEmissions      Decimal?  @map("carbon_emissions") @db.Decimal
+  totalEmployees       Int?      @map("total_employees")
+  femaleEmployees      Int?      @map("female_employees")
+  avgTrainingHours     Decimal?  @map("avg_training_hours") @db.Decimal
+  communitySpend       Decimal?  @map("community_spend") @db.Decimal
+  independentBoardPct  Decimal?  @map("independent_board_pct") @db.Decimal
+  hasDataPrivacyPolicy Boolean?  @map("has_data_privacy_policy")
+  totalRevenue         Decimal?  @map("total_revenue") @db.Decimal
+  createdAt            DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([userId, fiscalYear])
+  @@map("year_entries")
+}

@@ -17,7 +17,7 @@ type Props = {
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 export default function ESGForm({ initialYear }: Props) {
-  const router = useRouter() 
+  const router = useRouter()
   const [year, setYear] = useState<number>(initialYear)
   const { data, mutate, isLoading } = useSWR<{ entry: any }>(`/api/responses?fiscal_year=${year}`, fetcher)
   const [form, setForm] = useState<Record<string, any>>({
@@ -117,7 +117,8 @@ export default function ESGForm({ initialYear }: Props) {
     })
     if (res.ok) {
       await mutate()
-      router.push("/dashboard")
+      // router.push("/dashboard")
+      alert("Saved! Go to the dashboard");
     } else {
       const j = await res.json()
       alert(j.error || "Save failed")

@@ -27,7 +27,7 @@ export default function Header({
           className="pointer-events-auto flex items-center gap-2 text-white/90 hover:text-white font-semibold tracking-tight rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
         >
           <Image src="/logo.svg" alt="Logo" width={28} height={28} />
-          <span className="text-xs sm:text-lg md:text-xl">
+          <span className="hidden sm:inline text-lg md:text-xl">
             ESG Questionnaire
           </span>
         </Link>
@@ -36,7 +36,7 @@ export default function Header({
           <nav className="flex items-center gap-3 ml-auto">
             {/* 👇 Show logged-in user name */}
             {user?.name && (
-              <span className="text-white font-medium">
+              <span className="text-xs md:text-base text-white font-medium">
                 Hi, {user.name}
               </span>
             )}
